@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.task-cards-container {
+  width: 100%;
+  position: relative;
+  top: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+.task-card {
+  padding: 20px;
+  display: flex;
+  border-radius: 15px;
+  height: 380px;
+  margin: 35px;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.task-card .card-text {
+  color: #555;
+}
+
+.task-card .btn {
+  padding: 8px 12px;
+}
+
+.task-card-col {
+  display: flex;
+  justify-content: center;
+}
+.todolist-title {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4a90e2;
+  height: 80px;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  background-color: #f0f8ff;
+  padding: 15px 0;
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+}
+.custom-button {
+  position: fixed;
+  top: 20px;
+  left: 50px;
+  z-index: 2000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4a90e2;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-body {
+  display: grid;
+  align-items: center;
+}
+.modal{
+  position: absolute;
+  top: 100px;
+  z-index: 30000;
+}
