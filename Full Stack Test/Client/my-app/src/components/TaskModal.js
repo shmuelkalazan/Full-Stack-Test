@@ -14,7 +14,13 @@ export default function TaskModal({
     if (isEditing && task) {
       setEditedTask({ ...task });
     } else {
-      setEditedTask({});
+      setEditedTask({
+        title: "",
+        description: "",
+        due_date: "",
+        priority_id: 1,
+        status_id: 1,
+      });
     }
   }, [isEditing, task]);
 
@@ -26,11 +32,13 @@ export default function TaskModal({
     }));
   };
   const validForm = () => {
+    const { title, due_date, priority_id, status_id } = editedTask;
+    if (!title || !due_date || !priority_id || !status_id) return false;
     return true;
   };
   const handleSave = () => {
-    if (!validForm) {
-      alert("Form Not Valid, Please ensure all required fields are filled");
+    if (!validForm()) {
+      alert("The form is invalid. Please ensure all fields are filled out.");
       return;
     }
     onSaveTask({ ...task, ...editedTask });
@@ -69,7 +77,11 @@ export default function TaskModal({
             <Form.Control
               type="date"
               name="due_date"
-              value={editedTask.due_date || ""}
+              value={
+                editedTask.due_date
+                  ? new Date(editedTask.due_date).toISOString().split("T")[0]
+                  : ""
+              }
               onChange={handleChange}
             ></Form.Control>
           </Form.Group>
@@ -111,7 +123,8 @@ export default function TaskModal({
         </Button>
         <Button variant="primary" onClick={handleSave}>
           <FaCheck />
-          {"    "}{ isEditing ? "Save Changes" : "Create Task"}
+          {"    "}
+          {isEditing ? "Save Changes" : "Create Task"}
         </Button>
       </Modal.Footer>
     </Modal>

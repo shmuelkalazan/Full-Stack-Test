@@ -19,7 +19,6 @@ export default function TaskHome() {
     };
     fetchTasks();
   }, []);
-
   const onEditTask = async (task) => {
     setShowHeader(false);
     setSelectedTask(task);
@@ -38,27 +37,32 @@ export default function TaskHome() {
     try {
       if (isEditing) {
         updatedTask.update_date = new Date();
-        console.log("onSaveTask", updatedTask);
-
-        await axios.put(
+        const response = await axios.put(
           `http://localhost:5000/tasks/updateTask/${updatedTask._id}`,
           updatedTask
         );
-        setTasks(
-          tasks.map((task) =>
-            task._id === updatedTask._id ? { ...updatedTask } : task
-          )
-        );
+        if (response?.status === 200) {
+          setTasks(
+            tasks.map((task) =>
+              task._id === updatedTask._id ? { ...response.data.task } : task
+            )
+          );
+        }
         setIsEditing(false);
       } else {
-        await axios.post("http://localhost:5000/tasks/createTask", updatedTask);
-        setTasks([...tasks, updatedTask]);
+        const response = await axios.post(
+          "http://localhost:5000/tasks/createTask",
+          updatedTask
+        );
+        if (response?.status === 200) {
+          alert("Task Added successfully");
+          setTasks([...tasks, response.data.task]);
+        }
       }
       setShowEditModal(false);
       setShowHeader(true);
       setSelectedTask({});
     } catch (error) {
-      console.log("Error saving task");
       alert("Failed to save the task. Please try again.");
     }
   };
