@@ -28,7 +28,8 @@ run the following command in the client:
 2. cd my-app/
 3. npm install react-icons
 4. npm install react-bootstrap bootstrap
-5. npm start
+5. npm install webpack-dev-server@latest
+6. npm start
 
 
 
