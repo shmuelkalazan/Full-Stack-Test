@@ -13,7 +13,7 @@ in Client run cd Client
 in Server run cd Server
 
 run the following command in the server:
-1. run npm install
+1. npm install
 2. In the Server directory:, create a file named .env and add the following configuration:
 
 DB_CONNECT=mongodb+srv://semikalazan:2rvubmrA6okOG0b5@cluster0.6xklg.mongodb.net/
